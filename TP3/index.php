@@ -9,13 +9,19 @@
 <body>
 <?php
     session_start();
-    if (!isset($_SESSION['nom']) || !isset($_SESSION['prenom'])) {
-        header("Location: login.php");
-        exit();
-    }
+    require_once "Requests/config.php";
 
-    $nom = $_SESSION['nom'];
-    $prenom = $_SESSION['prenom'];
+    if (!isset($_SESSION['code_client']) && isset($_COOKIE['code_client'])) {
+        $code = intval($_COOKIE['code_client']);
+        $stmt = $pdo->prepare("SELECT nom, prenom FROM clients WHERE code = :code");
+        $stmt->execute(['code' => $code]);
+        $client = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($client) {
+            $_SESSION['code_client'] = $code;
+            $_SESSION['nom'] = $client['nom'];
+            $_SESSION['prenom'] = $client['prenom'];
+        }
+    }
 
     $file_path = "../Assets/counter.txt";
     if (!file_exists($file_path)) {
@@ -33,10 +39,14 @@
         <div class="header-left"><?php echo "$visitor visiteurs"; ?></div>
         <div class="header-center">Vente de Livres</div>
         <div class="header-right">
-            <div>Bienvenue<br><?php echo htmlspecialchars("$prenom $nom"); ?></div>
-            <form action="logout.php" method="post">
-                <button class="logout-btn" type="submit">Quitter</button>
-            </form>
+            <?php if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])): ?>
+                <div>Bienvenue<br><?php echo htmlspecialchars($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?></div>
+                <form action="logout.php" method="post">
+                    <button class="logout-btn" type="submit">Quitter</button>
+                </form>
+            <?php else: ?>
+                <a href="register.php" class="generic-btn">Inscription</a>
+            <?php endif; ?>
         </div>
     </header>
 

@@ -9,10 +9,6 @@
     <script src="./register.js" defer></script>
     <div class="log-container">
         <h2>Créer un compte client</h2>
-        
-        <?php if ($message): ?>
-            <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
-        <?php endif; ?>
 
         <form onsubmit="return false;" id="register-form">
             <nav class="nav-log">
