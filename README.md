@@ -16,18 +16,19 @@ The project is divided into **three main parts**, each introducing new functiona
    - Install and run Apache server and PHP.
 
 2. **Project Folder**:
-   - Place the project files inside `C:/xampp/htdocs/mysite/TP3`
-   - Your project will be accessible at: `http://localhost/mysite/TP3`
+   - Place the project files inside `C:/xampp/htdocs/mysite/Libary-BackEnd`
+   - Your project will be accessible at: `http://localhost/mysite/Libary-BackEnd`
 
 3. **Install PostgreSQL**:
    - Download from https://www.postgresql.org/
    - Use pgAdmin or `psql` command line to manage your DB.
 
 4. **Import the Database**:
-   - Use the provided `livres.sql` dump.
+   - Use the provided `dump-livres.sql` dump.
+   - The database import file is located in the `TP2/SQL/dump-livres.sql` folder
    - Run via command line:
      ```bash
-     psql -U postgres -f C:/path/to/livres.sql
+     psql -U postgres -f C:/path/to/dump-livres.sql
      ```
 
 ### For Linux:
@@ -41,13 +42,14 @@ The project is divided into **three main parts**, each introducing new functiona
    sudo apt install postgresql postgresql-contrib php-pgsql
    ```
 
-3. Place your site files inside `/var/www/html/mysite/TP3`
+3. Place your site files inside `/var/www/html/mysite/Libary-BackEnd`
 
 4. Import the database as on Windows.
 
 ---
 
 ## 📁 Project Structure
+This section only contains the description of TP3, as it carries the update of TP1 and TP2, and is considered the final project.
 ```
 TP3/
 ├── Cart/                  # Handles cart logic (AJAX + PHP)
