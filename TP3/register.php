@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../Assets/styles.css">
 </head>
 <body>
-    <script src="./register.js" defer></script>
+    <script src="Scripts/register.js" defer></script>
     <div class="log-container">
         <h2>Créer un compte client</h2>
 

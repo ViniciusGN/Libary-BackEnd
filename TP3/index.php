@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Bibliothèque Virtuelle</title>
     <link rel="stylesheet" href="../Assets/styles.css">
-    <script src="script.js" defer></script>
-    <script src="panier.js" defer></script>
+    <script src="Scripts/script.js" defer></script>
+    <script src="Scripts/panier.js" defer></script>
 </head>
 <body>
 <?php
@@ -41,6 +41,7 @@
             <form action="logout.php" method="post">
                 <button class="logout-btn" type="submit">Quitter</button>
             </form>
+            <button class="logout-btn" onclick="vider_panier()">Vider le panier</button>
         </div>
 
         <div class="header-center">Vente de Livres</div>
@@ -62,11 +63,8 @@
 
             <label style="color:white;" for="search_title">Titre :</label>
             <input type="text" id="search_title" placeholder="Titre du livre">
-
-            <label style="color:white;" for="search_code">Code :</label>
-            <input type="text" id="search_code" placeholder="Code du livre">
         </nav>
-        
+
         <div id="contenu-panier" class="right_Side" style="display: none;"></div>
 
         <section id="principal">

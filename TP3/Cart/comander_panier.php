@@ -2,6 +2,8 @@
 session_start();
 require_once "../Requests/config.php";
 
+header("Content-Type: text/plain; charset=UTF-8");
+
 if (!isset($_SESSION['code_client'])) {
     echo "Erreur : utilisateur non connecté.";
     exit();
