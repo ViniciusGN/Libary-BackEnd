@@ -36,6 +36,9 @@ try {
             ");
             $stmt2->execute(['code' => $ouvrage['code']]);
             $exemplaires = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($exemplaires as &$ex) {
+                $ex['prix'] = $ex['prix'] !== null ? number_format($ex['prix'], 2, '.', '') : '0.00';
+            }  
 
             $resultat[] = [
                 'code' => $ouvrage['code'],

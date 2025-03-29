@@ -5,6 +5,7 @@
     <title>Bibliothèque Virtuelle</title>
     <link rel="stylesheet" href="../Assets/styles.css">
     <script src="script.js" defer></script>
+    <script src="panier.js" defer></script>
 </head>
 <body>
 <?php
@@ -36,16 +37,20 @@
     }
 ?>
     <header>
-        <div class="header-left"><?php echo "$visitor visiteurs"; ?></div>
+        <div class="header-left"><?php echo "$visitor visiteurs"; ?>
+            <form action="logout.php" method="post">
+                <button class="logout-btn" type="submit">Quitter</button>
+            </form>
+        </div>
+
         <div class="header-center">Vente de Livres</div>
+
         <div class="header-right">
             <?php if (isset($_SESSION['nom']) && isset($_SESSION['prenom'])): ?>
                 <div>Bienvenue<br><?php echo htmlspecialchars($_SESSION['prenom'] . ' ' . $_SESSION['nom']); ?></div>
-                <form action="logout.php" method="post">
-                    <button class="logout-btn" type="submit">Quitter</button>
-                </form>
+                <button class="logout-btn" onclick="consulter_panier()">Consulter le panier</button>
             <?php else: ?>
-                <a href="register.php" class="generic-btn">Inscription</a>
+                <a href="register.php" class="logout-btn">Inscription</a>
             <?php endif; ?>
         </div>
     </header>
@@ -61,6 +66,8 @@
             <label style="color:white;" for="search_code">Code :</label>
             <input type="text" id="search_code" placeholder="Code du livre">
         </nav>
+        
+        <div id="contenu-panier" class="right_Side" style="display: none;"></div>
 
         <section id="principal">
             <div id="resultats-auteurs">

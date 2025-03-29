@@ -87,9 +87,26 @@ function affiche_ouvrages(ouvrages) {
     let html = '<ol style="padding-left: 25px;">';
 
     ouvrages.forEach(ouvrage => {
-        html += `<li>${ouvrage.nom}</li>`;
+        html += `<li style="margin-bottom: 10px;"><strong>${ouvrage.nom}</strong>`;
+
+        if (ouvrage.exemplaires && ouvrage.exemplaires.length > 0) {
+            html += '<ul style="margin-top: 5px; margin-bottom: 10px;">';
+            ouvrage.exemplaires.forEach(ex => {
+                html += `
+                    <li style="margin-left: 10px;">
+                        ${ex.nom}, ${ex.prix} € 
+                        <a href="#" style="color: #03a9f4; text-decoration: underline;" onclick="ajouter_panier(${ex.code}); return false;">
+                            [ajouter au panier]
+                        </a>
+                    </li>`;
+            });
+            html += '</ul>';
+        }
+
+        html += '</li>';
     });
 
     html += "</ol>";
     div.innerHTML = html;
 }
+
